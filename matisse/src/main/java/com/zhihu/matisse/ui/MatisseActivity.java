@@ -360,6 +360,9 @@ public class MatisseActivity extends AppCompatActivity implements
 
             @Override
             public void run() {
+                if(cursor.isClosed()){
+                    return;
+                }
                 cursor.moveToPosition(mAlbumCollection.getCurrentSelection());
                 mAlbumsSpinner.setSelection(MatisseActivity.this,
                         mAlbumCollection.getCurrentSelection());

@@ -24,6 +24,7 @@ import com.zhihu.matisse.internal.entity.Item;
 import com.zhihu.matisse.internal.ui.PreviewItemFragment;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class PreviewPagerAdapter extends FragmentPagerAdapter {
@@ -43,7 +44,10 @@ public class PreviewPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return mItems.size();
+        if(mItems != null){
+            return mItems.size();
+        }
+        return 0;
     }
 
     @Override
@@ -55,6 +59,9 @@ public class PreviewPagerAdapter extends FragmentPagerAdapter {
     }
 
     public Item getMediaItem(int position) {
+        if(mItems == null || mItems.size() <= position){
+            return null;
+        }
         return mItems.get(position);
     }
 

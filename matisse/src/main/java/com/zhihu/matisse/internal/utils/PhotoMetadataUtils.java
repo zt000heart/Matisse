@@ -25,6 +25,7 @@ import android.graphics.Point;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 
@@ -157,7 +158,11 @@ public final class PhotoMetadataUtils {
     private static boolean shouldRotate(ContentResolver resolver, Uri uri) {
         ExifInterface exif;
         try {
-            exif = ExifInterfaceCompat.newInstance(getPath(resolver, uri));
+            String path = getPath(resolver, uri);
+            if(TextUtils.isEmpty(path)){
+                return false;
+            }
+            exif = ExifInterfaceCompat.newInstance(path);
         } catch (IOException e) {
             Log.e(TAG, "could not read exif info of the image: " + uri);
             return false;
