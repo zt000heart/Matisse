@@ -89,7 +89,8 @@ public final class PhotoMetadataUtils {
             int width = options.outWidth;
             int height = options.outHeight;
             return new Point(width, height);
-        } catch (FileNotFoundException e) {
+        } catch (Exception e) {
+            e.printStackTrace();
             return new Point(0, 0);
         } finally {
             if (is != null) {

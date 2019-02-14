@@ -115,7 +115,11 @@ public class MatisseActivity extends AppCompatActivity implements
         }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        try{
+            setSupportActionBar(toolbar);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setDisplayHomeAsUpEnabled(true);
